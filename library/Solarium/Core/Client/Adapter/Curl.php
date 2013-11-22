@@ -176,7 +176,7 @@ class Curl extends Configurable implements AdapterInterface
         if ($method == Request::METHOD_POST) {
             curl_setopt($handler, CURLOPT_POST, true);
             if ($request->getFileUpload()) {
-                curl_setopt($handler, CURLOPT_POSTFIELDS, array('content' => '@'.$request->getFileUpload()));
+                curl_setopt($handler, CURLOPT_POSTFIELDS, array('file' => curl_file_create($request->getFileUpload())));
             } else {
                 curl_setopt($handler, CURLOPT_POSTFIELDS, $request->getRawData());
             }
